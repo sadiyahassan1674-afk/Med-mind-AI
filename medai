@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medai</title>
+    <link href="/dist/styles.css" rel="stylesheet">
+    
+</head>
+<body class="overflow-x-hidden" >
+    <div class=" uppbar mx-3.5 my-3.5 flex justify-between ">
+        <div class="medailogo ">
+            <img src="medai_logo.png" alt="imglogo" class="h-20">
+        </div>
+        <div class="navleft justify-end my-3 mx-3">
+          <button class="text-[#20A1D0] bg-white  rounded-xl hover:transform transition-transform duration-200 hover:scale-110  hover:drop-shadow-xl border-2 w-25 tr  border-[#20A1D0] px-1 py-1 ">REGISTER</button>
+          <button class=" rounded-xl  w-25  text-white h-9 bg-[#20A1D0] px-1 py-1 hover:transform transition-transform duration-200 hover:scale-110 hover:drop-shadow-xl">SIGN IN</button>
+        </div>
+    </div>
+    <div class="midkeystands mx-10
+    space-x-4 py-4  flex">
+        <div class="text-[#66A9C0] bg-blend-soft-light bg-[#D2EDF6] rounded-3xl px-2 py-2  font-light tracking-wider">MEDICAL</div>
+        <div class="text-[#66A9C0] bg-blend-soft-light  bg-[#D2EDF6] rounded-3xl px-2 py-2  font-light tracking-wider">MENTAL WELLBEING</div>
+    </div>
+    <div class="mid-content space-x-5 flex justify-between">
+    <div class="midheading mx-10
+    space-x-5 py-1 text-7xl playfair font-bold leading-none tracking-normal text-[#0D2F5C]">
+        Med AI Doctor: Your Trusted
+        <br>
+        AI-Powered Healthcare
+        <br>
+        Companion
+        <br>
+    </div>
+    <div class="midimg w-4xl justify-end   ">
+        <img src="medai_main.png" alt="medaimain">
+    </div>
+    </div>
+    <div class="midsmall mx-12 text-2xl py-1">
+        <div class="font-extralight text-[#0E71AA]">Experience the future of healthcare with intelligent, compassionate care.
+            <br>
+            Our AI-powered platform connects you with medical expertise instantly.
+        </div>
+    </div>
+    <div class="midbuttons mx-12 py-1  ">
+        <button class="bg-[#0D2F5C] px-2 py-2  text-white shadow-md border-white  shadow-black hover: transform transition-transform duration-200 
+                hover:bg-blue-900" >LOGIN TO YOUR ACCOUNT</button>
+        <button class=" bg-white border-[#0D2F5C] border-[1.5] shadow-md shadow-black text-[#OD2F5C] hover: transform transition-transform duration-200 hover:scale-125 hover:bg-white px-2 py-2">REGISTER NOW</button>
+    </div>
+    <div class="endbox h-106 w-full mx-0 bg-[#CFEBF5] my-20">
+        <div class="fourboxes  flex justify-between py-8 space-x-1.5 mx-30   ">
+            <div class=" box h-90 w-70 bg-[#0E71AA] rounded-2xl  transition-all duration-700 ease-in-out
+                transform">
+            24/7 
+            SUPPORT</div>
+            <div class=" box h-90 w-70 bg-[#0E71AA] rounded-2xl  transition-all duration-700 ease-in-out
+                transform"></div>
+            <div class=" box h-90 w-70 bg-[#0E71AA] rounded-2xl  transition-all duration-700 ease-in-out
+                transform "></div>
+            <div class=" box h-90 w-70 bg-[#0E71AA] rounded-2xl  transition-all duration-700 ease-in-out
+                transform  "></div>
+        </div>
+
+    </div>
+     <div class="imglogo"><img src="medai_logo.png" alt="logo"></div>
+    <footer class=" foot w-full font-light font-opensans text-xl  bg-white py-10 text-center">
+       
+  © 2026 Med AI Doctor. 
+  <br>
+  All rights reserved. Your health, our priority.
+</footer>
+    <script>
+        const boxes = document.querySelectorAll('.box');
+  let activeIndex = 0;
+
+  setInterval(() => {
+    boxes.forEach((box, index) => {
+      if (index === activeIndex) {
+        box.classList.add('scale-110', 'shadow-2xl' , 'shadow-[#05324c]','bg-[#1b82be]');
+      } else {
+        box.classList.remove('scale-110', 'shadow-2xl','shadow-[#05324c]','bg-[#1b82be]');
+      }
+    });
+
+    activeIndex = (activeIndex + 1) % boxes.length;
+  }, 1500);
+    </script>
+        
+        
+    
+</body>
+</html>
