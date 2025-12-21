@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="dist/styles.css" rel="stylesheet">
+    <title>BMI result card</title>
+</head>
+<body class="overflow-x-hidden overflow-y-scroll">
+    <div class=" uppbar mx-3.5 my-3.5 flex justify-between ">
+        <div class="medailogo ">
+            <img src="medai_logo.png" alt="imglogo" class="h-20 mx-2.5">
+        </div>
+        <div class="navbar w-5/6 my-1 h-14 rounded-4xl bg-[#20A1D0] mx-4 drop-shadow-xl">
+            <div class="txt flex justify-between">
+                <ul class="flex space-x-5 absolute left-5 top-3.5 text-white  ">
+                    <li class="font-extralight text-shadow-2xs">HOME</li>
+                    <li class="font-extralight  text-shadow-2xs">SERVICES</li>
+                    <li class="font-extralight text-shadow-2xs">ABOUT</li>
+                    <li class="font-extralight text-shadow-2xs">CONTACT</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div
+        class="bmi_head bg-[#20A1D0] h-[32] w-11/12 absolute left-14 py-4 drop-shadow-xl rounded-2xl text-center text-7xl text-white text-shadow-black opensans font-bold ">
+        BMI RESULT CARD</div>
+    <div class="bmi_result bg-[#20A1D0] h-64 w-4xl absolute  top-72 left-72 py-4 drop-shadow-xl rounded-lg text-center text-7xl text-white text-shadow-black opensans font-bold  ">
+        <div class="calculated flex space-x-5 mx-4">
+            <div class="opensans text-white font-blod text-2xl px-8 py-4 relative top-5">Calculated BMI : </div>
+            <div class="bg-white h-16 w-lg rounded-lg py-4 relative top-5 text-2xl playfair font-bold text-cyan-500 text-center" id="bmiValue"></div>
+        </div>
+        <div class="calculated flex space-x-28 mx-4">
+            <div class="opensans text-white font-blod text-2xl px-8 py-4 relative top-5">Category : </div>
+            <div class="bg-white h-16 w-lg rounded-lg py-4 relative right-6 top-10  font-bold playfair text-2xl text-cyan-500 text-center" id="bmiCategory"></div>
+        </div>
+    </div>
+</div>
+  <script src="bmi.js"></script>
+    
+</body>
+</html>

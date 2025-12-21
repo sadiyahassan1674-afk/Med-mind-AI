@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="dist/styles.css" rel="stylesheet">
+    <title>BMI</title>
+</head>
+
+<body class="overflow-x-hidden overflow-y-scroll">
+    <div class=" uppbar mx-3.5 my-3.5 flex justify-between ">
+        <div class="medailogo ">
+            <img src="medai_logo.png" alt="imglogo" class="h-20 mx-2.5">
+        </div>
+        <div class="navbar w-5/6 my-1 h-14 rounded-4xl bg-[#20A1D0] mx-4 drop-shadow-xl">
+            <div class="txt flex justify-between">
+                <ul class="flex space-x-5 absolute left-5 top-3.5 text-white  ">
+                    <li class="font-extralight text-shadow-2xs">HOME</li>
+                    <li class="font-extralight  text-shadow-2xs">SERVICES</li>
+                    <li class="font-extralight text-shadow-2xs">ABOUT</li>
+                    <li class="font-extralight text-shadow-2xs">CONTACT</li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div
+        class="bmi_head bg-[#20A1D0] h-[32] w-11/12 absolute left-14 py-4 drop-shadow-xl rounded-2xl text-center text-7xl text-white text-shadow-black opensans font-bold ">
+        BMI CALCULATOR</div>
+
+
+    <div class="info>">
+        <div class="up flex space-x-5 absolute top-64 left-56 ">
+
+
+            <div class="bx1 h-64 w-lg border-4 rounded-xl border-cyan-500">
+                <div
+                    class="circle_num h-14 w-14 rounded-full  bg-cyan-500 absolute bottom-56 left-56 text-white text-center  text-5xl opensans font-bold">
+                    1</div>
+                <form class="gender">
+                    <h2 class="opensans font-extrabold text-cyan-500 text-shadow-2xs text-2xl relative top-7 left-32">
+                        What is your gender?</h2>
+                    <div class="options flex justify-center-safe relative top-10 space-x-5">
+
+                        <label class="option">
+                            <input type="radio" name="gender" value="female">
+                            <img src="female.jpg" alt="Female" class="h-20">
+                            <span class="text-cyan-500 font-bold relative left-4 ">Female</span>
+                        </label>
+
+                        <label class="option">
+                            <input type="radio" name="gender" value="male">
+                            <img src="male.jpg" alt="Male" class="h-20">
+                            <span class="text-cyan-500 font-bold relative left- ">Male</span>
+                        </label>
+
+                    </div>
+                </form>
+            </div>
+
+
+
+
+            <div class="bx2 h-64 w-lg border-4 rounded-xl  border-cyan-500">
+                <div
+                    class="circle_num h-14 w-14 rounded-full  bg-cyan-500 absolute bottom-56 right-56 text-white text-center  text-5xl opensans font-bold ">
+                    2</div>
+                <div class="agebox">
+                    <h2 class="opensans font-extrabold text-cyan-500 text-shadow-2xs text-2xl relative top-7 left-32">
+                        How old are you>?</h2>
+                    <div class="flex items-center gap-2">
+                        <input type="number" min="1" max="120" class="w-28 h-16 text-center relative top-16 left-36 text-2xl font-semibold
+             rounded-2xl bg-cyan-500 text-white
+             outline-none focus:ring-4 focus:ring-cyan-300
+             appearance-none" placeholder="AGE" />
+                        <span class="text-cyan-500 text-xl relative top-16 left-36 font-semibold">Years</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="down flex space-x-5 py-20 absolute top-4/6 left-56">
+
+
+
+            <div class="bx3 h-64 w-lg border-4 rounded-xl  border-cyan-500">
+                <div
+                    class="circle_num h-14 w-14 rounded-full  bg-cyan-500 relative bottom-6 left-56 text-white text-center  text-5xl font-bold opensans">
+                    3</div>
+                <div class="heightbox">
+                    <h2
+                        class="opensans font-extrabold text-cyan-500 text-shadow-2xs text-2xl relative bottom-5 left-36">
+                        How tall are you?</h2>
+                    <div class="  flex items-center gap-2">
+                        <input id="height" type="number" min="50" max="200" class="w-28 h-16 text-center relative top-4 left-40 text-2xl font-semibold
+             rounded-2xl bg-cyan-500 text-white
+             outline-none focus:ring-4 focus:ring-cyan-300
+             appearance-none" placeholder="Height" />
+                        <span class="text-cyan-500 text-xl relative top-4 left-40 font-semibold">cm</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <div class="bx4 h-64 w-lg border-4 rounded-xl  border-cyan-500">
+                <div
+                    class="circle_num h-14 w-14 rounded-full  bg-cyan-500 relative bottom-6 left-56 text-white text-center  text-5xl opensans font-bold">
+                    4</div>
+                    <div class="heightbox">
+                    <h2
+                        class="opensans font-extrabold text-cyan-500 text-shadow-2xs text-2xl relative bottom-5 left-24">
+                        How much do you weigh?</h2>
+                    <div class="flex items-center gap-2">
+                        <input id="weight" type="number" min="10" max="200" class="w-28 h-16 text-center relative top-4 left-40 text-2xl font-semibold
+             rounded-2xl bg-cyan-500 text-white
+             outline-none focus:ring-4 focus:ring-cyan-300
+             appearance-none" placeholder="weight" />
+                        <span class="text-cyan-500 text-xl relative top-4 left-40 font-semibold">kg</span>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+         
+   
+    </div>
+     <div class="submission">
+            <button id="bmical" class="text-white  bg-[#20A1D0] rounded-3xl text-xl  w-6xl h-14 my-12 hover:transform transition-transform duration-200 hover:scale-110  hover:drop-shadow-xl active:bg-[#69c5e7] ">CALCULATE YOUR BMI</button>
+          </div>
+  <script src="bmi.js"></script>
+
+</body>
+
+</html>
