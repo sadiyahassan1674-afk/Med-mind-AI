@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>MEDCHECK - Full FDA Report</title>
+    <style>
+        .text-shadow-black { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .opensans { font-family: 'Open Sans', sans-serif; }
+   
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #20A1D0; border-radius: 10px; }
+    </style>
+</head>
+<body class="overflow-x-hidden overflow-y-scroll bg-slate-50 min-h-screen pb-20">
+
+    <div class="uppbar mx-3.5 my-3.5 flex justify-between items-center">
+        <div class="medailogo">
+             <img src="medai_logo.png" alt="imglogo" class="h-20 mx-2.5">
+        </div>
+        <div class="navbar w-5/6 my-1 h-14 rounded-full bg-[#20A1D0] mx-4 drop-shadow-xl relative">
+            <ul class="flex space-x-8 absolute left-8 top-3.5 text-white font-extralight">
+                <li class="cursor-pointer hover:opacity-80">HOME</li>
+                <li class="cursor-pointer hover:opacity-80">SERVICES</li>
+                <li class="cursor-pointer hover:opacity-80">ABOUT</li>
+                <li class="cursor-pointer hover:opacity-80">CONTACT</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="relative h-64">
+        <div class="bmi_head bg-[#20A1D0] w-11/12 mx-auto py-8 drop-shadow-xl rounded-2xl text-center text-7xl text-white text-shadow-black opensans font-bold uppercase">
+            MEDCHECK
+            <div class="text-lg opacity-80 font-normal mt-2 normal-case">Comprehensive FDA Pharmaceutical Intelligence</div>
+        </div> 
+    </div>
+
+    <div class="max-w-2xl mx-auto -mt-16 relative z-10">
+        <div class="bg-white p-4 drop-shadow-lg rounded-lg flex gap-2 border border-slate-100">
+            <input class="flex-grow text-xl text-[#20A1D0] border-[#20A1D0] border-2 h-14 rounded-md text-center focus:outline-none" 
+                   type="text" id="medname" placeholder="Search Medicine (e.g., Lisinopril)">
+            <button onclick="search_meds()" class="bg-[#20A1D0] text-xl font-bold opensans text-white px-8 py-2 rounded-md hover:brightness-110 transition-all">
+                SEARCH
+            </button>
+        </div>
+    </div>
+
+    <div id="loader" class="hidden text-center mt-20 text-[#20A1D0] font-bold animate-pulse">Analyzing FDA Database...</div>
+
+    <div id="resultCard" class="hidden max-w-6xl mx-auto mt-12 p-4 md:p-8">
+        
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 border-t-8 border-[#20A1D0]">
+            <h2 id="drugTitle" class="text-5xl font-bold text-[#20A1D0] mb-4">DRUG NAME</h2>
+            <div id="boxedWarningSection" class="hidden bg-red-600 text-white p-6 rounded-xl animate-pulse">
+                <h4 class="font-black text-xl mb-2">⚠️ BOXED WARNING</h4>
+                <p id="boxed_warning" class="text-sm leading-relaxed font-medium"></p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-[#20A1D0]">
+                <h3 class="text-[#20A1D0] font-bold text-lg mb-3">INDICATIONS & USAGE</h3>
+                <div id="indications" class="text-gray-700 text-sm max-h-48 overflow-y-auto custom-scroll pr-2"></div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-[#20A1D0]">
+                <h3 class="text-[#20A1D0] font-bold text-lg mb-3">DOSAGE & ADMINISTRATION</h3>
+                <div id="dosage" class="text-gray-700 text-sm max-h-48 overflow-y-auto custom-scroll pr-2"></div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-400">
+                <h3 class="text-red-500 font-bold text-lg mb-3">CONTRAINDICATIONS</h3>
+                <div id="contraindications" class="text-gray-700 text-sm max-h-48 overflow-y-auto custom-scroll pr-2"></div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-orange-400">
+                <h3 class="text-orange-500 font-bold text-lg mb-3">DRUG INTERACTIONS</h3>
+                <div id="interactions" class="text-gray-700 text-sm max-h-48 overflow-y-auto custom-scroll pr-2"></div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-[#20A1D0]">
+                <h3 class="text-[#20A1D0] font-bold text-lg mb-3">ADVERSE REACTIONS</h3>
+                <div id="adverse" class="text-gray-700 text-sm max-h-48 overflow-y-auto custom-scroll pr-2"></div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-[#20A1D0]">
+                <h3 class="text-[#20A1D0] font-bold text-lg mb-3">SPECIFIC POPULATIONS</h3>
+                <div id="populations" class="text-gray-700 text-sm max-h-48 overflow-y-auto custom-scroll pr-2"></div>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-white p-8 rounded-2xl shadow-lg">
+            <h3 class="text-center font-bold text-[#20A1D0] text-xl mb-6">MOST COMMON PATIENT-REPORTED REACTIONS</h3>
+            <div id="sideEffectsList" class="flex flex-wrap justify-center gap-3"></div>
+        </div>
+    </div>
+
+    <script>
+        async function search_meds() {
+            const med = document.getElementById('medname').value;
+            const loader = document.getElementById('loader');
+            const resultCard = document.getElementById('resultCard');
+
+            if (!med) return alert("Please enter a medicine name");
+
+            loader.classList.remove('hidden');
+            resultCard.classList.add('hidden');
+
+            try {
+              
+                const labelRes = await fetch(`https://api.fda.gov/drug/label.json?search=openfda.brand_name:"${med}"&limit=1`);
+                const labelData = await labelRes.json();
+
+                const eventRes = await fetch(`https://api.fda.gov/drug/event.json?search=patient.drug.medicinalproduct:"${med}"&count=patient.reaction.reactionmeddrapt.exact&limit=12`);
+                const eventData = await eventRes.json();
+
+                if (labelData.results) {
+                    const drug = labelData.results[0];
+                    
+
+                    document.getElementById('drugTitle').innerText = drug.openfda.brand_name ? drug.openfda.brand_name[0] : med.toUpperCase();
+
+                  
+                    const fields = {
+                        'indications': drug.indications_and_usage,
+                        'dosage': drug.dosage_and_administration,
+                        'contraindications': drug.contraindications,
+                        'interactions': drug.drug_interactions,
+                        'adverse': drug.adverse_reactions,
+                        'populations': drug.use_in_specific_populations
+                    };
+
+                    for (const [id, value] of Object.entries(fields)) {
+                        document.getElementById(id).innerText = value ? value[0] : "Data not provided in current FDA filing.";
+                    }
+
+                 
+                    const boxWarningSection = document.getElementById('boxedWarningSection');
+                    if (drug.boxed_warning) {
+                        boxWarningSection.classList.remove('hidden');
+                        document.getElementById('boxed_warning').innerText = drug.boxed_warning[0];
+                    } else {
+                        boxWarningSection.classList.add('hidden');
+                    }
+
+                  
+                    const tagsContainer = document.getElementById('sideEffectsList');
+                    tagsContainer.innerHTML = '';
+                    if (eventData.results) {
+                        eventData.results.forEach(effect => {
+                            const span = document.createElement('span');
+                            span.className = "bg-slate-100 text-[#20A1D0] border border-[#20A1D0] px-4 py-2 rounded-lg text-xs font-bold uppercase shadow-sm";
+                            span.innerText = effect.term;
+                            tagsContainer.appendChild(span);
+                        });
+                    }
+
+                    resultCard.classList.remove('hidden');
+                } else {
+                    alert("Medicine not found. Try the generic name.");
+                }
+            } catch (err) {
+                alert("Error connecting to FDA services.");
+            } finally {
+                loader.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
